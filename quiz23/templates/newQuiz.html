@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Quiz App</title>
+{% endblock %}
+
+{% block body %}
+    <header>
+        <h1> <a href="/index.html">Quiz App</a></h1>
+    </header>
+
+    <main>
+        <div class="form-container2‚">
+            <form id="form" action="{{ url_for('createNewQuiz') }}" method="POST">
+               <!-- <label for="quiz_id">Quiz ID: </label>
+                <input type="number" id="quiz_id" name="quiz_id" placeholder="Quiz ID"/><br> -->
+                <label for="dozent_id">Dozent ID: </label>
+                <input type="number" id="dozent_id" name="dozent_id" min="1" placeholder="Dozent ID" autofocus required/><br>
+                <label for="thema">Erstelle ein neues Quiz: </label>
+                <input type="text" id="thema" name="thema" placeholder="Dein Thema hier eingeben" required/><br>
+                <input type="submit" value="Neues Quiz erstellen"/>
+            </form>
+        </div>
+    </main>
+{% endblock %}

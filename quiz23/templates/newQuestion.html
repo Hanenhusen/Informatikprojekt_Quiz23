@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Quiz App</title>
+{% endblock %}
+
+{% block body %}
+    <header>
+        <h1> <a href="/index.html">Quiz App </a></h1>
+    </header>
+    <body>
+    <main>
+        <div class="form-container">
+            <form id="form" action="{{ url_for('createNewQuestion', quiz_id=quiz_id) }}" method="POST">
+
+                <label for="frage_inhalt">Frage:</label><br>
+                <input type="text" id="frage_inhalt" name="frage_inhalt" placeholder="Deine Frage hier eingeben" required><br>
+
+                <label for="fragetyp">Fragetyp:</label>
+                    <select id="fragetyp" name="fragetyp">
+                        <option value="single-choice">Single Choice</option>
+                        <option value="multiple-choice">Multiple Choice</option>
+                    </select>
+
+                <br>
+                <br>
+
+                <div id="antwort-container_1">
+                    <label for="antwort_1">Antwort:</label>
+                    <input type="text" id="antwort_1" name="antwort_1" placeholder="Antwort hier eingeben" required>
+                    <input type="checkbox" id="checkbox_1" name="ist_korrekt_1">
+                    <button type="button" class="minus-button" onclick="removeAnswer(1)">-</button><br>
+                </div>
+
+                <div id="antwort-container_2">
+                    <label for="antwort_2">Antwort:</label>
+                    <input type="text" id="antwort_2" name="antwort_2" placeholder="Antwort hier eingeben" required>
+                    <input type="checkbox" id="checkbox_2" name="ist_korrekt_2">
+                    <button type="button" class="minus-button" onclick="removeAnswer(2)">-</button><br>
+                </div>
+
+                <div id="antwort-container_3">
+                    <label for="antwort_3">Antwort:</label>
+                    <input type="text" id="antwort_3" name="antwort_3" placeholder="Antwort hier eingeben">
+                    <input type="checkbox" id="checkbox_3" name="ist_korrekt_3">
+                    <button type="button" class="minus-button" onclick="removeAnswer(3)">-</button><br>
+                </div>
+
+                <div id="antwort-container_4" >
+                    <label for="antwort_4">Antwort:</label>
+                    <input type="text" id="antwort_4" name="antwort_4" placeholder="Antwort hier eingeben">
+                    <input type="checkbox" id="checkbox_4" name="ist_korrekt_4">
+                    <button type="button" class="minus-button" onclick="removeAnswer(4)">-</button><br>
+                </div>
+
+                <input type="submit" value="Frage erstellen">
+            </form>
+        </div>
+
+
+        <script>
+
+            function removeAnswer(answerNumber) {
+                const answerContainer = document.getElementById('antwort-container_' + answerNumber);
+                answerContainer.parentNode.removeChild(answerContainer);
+            }
+
+
+        </script>
+
+    </main>
+
+    </body>
+{% endblock %}

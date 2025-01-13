@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    <header>
+        <h1> <a href="/index.html">Quiz App </a></h1>
+    </header>
+
+    <h2>Thema: {{ quiz_data["thema"] }}</h2>
+
+    <form method="POST" action="{{ url_for('submitQuiz', quiz_id=quiz_data['quiz_id']) }}">
+    {% for question in questions %}
+        <fieldset>
+            <legend>{{ question["frage_inhalt"] }}</legend>
+            {% for answer in question["answers"] %}
+                <label>
+                {% if question['fragetyp'] == 'single-choice' %}
+                        <input type="radio"
+                         name="answer_{{ question['frage_id'] }}"
+                         value="{{ answer['antwort_id'] }}">
+                    {% elif question['fragetyp'] == 'multiple-choice' %}
+                        <input type="checkbox"
+                        name="answer_{{ question['frage_id'] }}_{{ answer['antwort_id'] }}"
+                        value="{{ answer['antwort_id'] }}">
+                    {% endif %}
+                    {{ answer['antwort_inhalt'] }}
+                </label><br>
+            {% endfor %}
+        </fieldset>
+    {% endfor %}<br><br><hr><br><br>
+        <label for="feedback_text">Ihr Feedback:</label>
+            <textarea id="feedback_text" name="feedback_text" placeholder="Sie können Ihr Feedback eingeben..."rows="6" cols="60"></textarea>
+        <br><br>
+    <input type="submit" value="Quiz beenden">
+</form>
+
+
+{% endblock %}

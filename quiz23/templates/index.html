@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Quiz App</title>
+{% endblock %}
+
+{% block body %}
+
+   <header>
+       <h1> <a href="/index.html">Quiz App </a></h1>
+   </header>
+    <body >
+        <main class="content">
+            <div class = button-container>
+                <h1>Willkommen bei Quiz-App</h1>
+                <p>Bist du bereit, dein Wissen zu testen, deine Denkfähigkeiten zu schärfen und dabei eine Menge Spaß zu haben?<br>
+                Viel Erfolg!</p>
+                <a href="playQuizzes.html" class="button">Quiz spielen</a>
+
+                <a href="newQuiz.html" class="button">Neues Quiz erstellen</a>
+
+                <a href="allQuizzes.html" class="button">Liste aller Quizze</a>
+
+                <a href="aboutProject.html" class="button">Über unser Projekt</a>
+            </div>
+
+            <div class="bild-container">
+                <img src="../static/css/img.png" alt="">
+            </div>
+        </main>
+        <footer>
+            <h3>Quiz23, Projekt von:</h3>&nbsp;
+            <p>
+                Amelie Schepping,
+                Damian Sporin,
+                Hanen Husen,
+                Hasan Kahraman,
+                Karina Kiriyak,
+                Nora Abdulaziz,
+                Salah Alhaji.
+            </p>
+        </footer>
+    </body>
+
+{% endblock %}

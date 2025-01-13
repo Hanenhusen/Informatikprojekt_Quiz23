@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block head %}
+ 
+{% endblock %}
+{% block body %}
+<header>
+        <h1> <a href="/index.html">Quiz App </a></h1>
+</header>
+ 
+<br>
+<br>
+<br>
+<br>
+<br>
+    <h1>Quiz löschen</h1>
+    <p>Möchtest du das Quiz "{{ quiz_data.thema }}" wirklich löschen?</p>
+ 
+    <form method="post">
+        <button type="submit" class="link">Ja, löschen</button>
+        <a href="{{ url_for('showAllQuizzes') }}" class="link">Nein, abbrechen</a>
+    </form>
+ 
+ 
+{% endblock %}

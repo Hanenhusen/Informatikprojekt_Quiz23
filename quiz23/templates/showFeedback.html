@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Quiz App</title>
+{% endblock %}
+
+{% block body %}
+    <header>
+        <h1><a href="/index.html">Quiz App</a></h1>
+    </header>
+
+    <h2>Feedback für das Quiz: {{ quiz_data['thema'] }}</h2>
+
+    {% if feedback %}
+         <table border="1">
+            <thead>
+                <tr>
+                    <th>Feedback ID</th>
+                    <th>Feedback Text</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fb in feedback %}
+                    <tr>
+                        <td>{{ fb['feedback_id'] }}</td>
+                        <td>{{ fb['feedback_text'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Es liegt noch kein Feedback vor.</p>
+    {% endif %}
+
+{% endblock %}

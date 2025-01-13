@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Edit Question</title>
+{% endblock %}
+
+{% block body %}
+    <header>
+        <h1> <a href="/index.html">Quiz App </a></h1>
+    </header>
+
+    <main>
+        <h2>Frage bearbeiten</h2>
+    <form method="post" action="{{ url_for('editQuestion', frage_id=question_data['frage_id']) }}">
+
+        <label for="frage_inhalt">Frageinhalt:</label>
+
+        <input type="text" id="frage_inhalt" name="frage_inhalt" value="{{ question_data['frage_inhalt'] }}" required >
+
+        <br>
+        <label for="fragetyp">Fragetyp:</label>
+            <select id="fragetyp" name="fragetyp">
+                 <option value="single-choice" {% if question_data['fragetyp'] == 'single-choice' %} selected {% endif %}>Single Choice</option>
+                 <option value="multiple-choice" {% if question_data['fragetyp'] == 'multiple-choice' %} selected {% endif %}>Multiple Choice</option>
+            </select>
+        <br>
+
+        <br>
+            <div id="antwort-container_1">
+                <label for="antwort_1">Antwort:</label>
+                <input type="text" id="antwort_1" name="antwort_1" value="{{ answer_data[0]['antwort_inhalt'] }}">
+                <input type="checkbox" id="checkbox_1" name="ist_korrekt_1" {% if answer_data[0]['ist_korrekt'] %} checked {% endif %}>
+                <button type="button" class="minus-button" onclick="removeAnswer(1)">-</button><br>
+            </div>
+            <div id="antwort-container_2">
+                <label for="antwort_2">Antwort:</label>
+                <input type="text" id="antwort_2" name="antwort_2" value="{{ answer_data[1]['antwort_inhalt'] }}">
+                <input type="checkbox" id="checkbox_2" name="ist_korrekt_2"{% if answer_data[1]['ist_korrekt'] %} checked {% endif %}>
+                <button type="button" class="minus-button" onclick="removeAnswer(2)">-</button><br>
+            </div>
+            <div id="antwort-container_3">
+                <label for="antwort_3">Antwort:</label>
+                <input type="text" id="antwort_3" name="antwort_3" value="{{ answer_data[2]['antwort_inhalt'] }}" >
+                <input type="checkbox" id="checkbox_3" name="ist_korrekt_3" {% if answer_data[2]['ist_korrekt'] %} checked {% endif %}>
+                <button type="button" class="minus-button" onclick="removeAnswer(3)">-</button><br>
+            </div>
+            <div id="antwort-container_4" >
+                    <label for="antwort_4">Antwort:</label>
+                    <input type="text" id="antwort_4" name="antwort_4" value="{{ answer_data[3]['antwort_inhalt'] }}">
+                    <input type="checkbox" id="checkbox_4" name="ist_korrekt_4"{% if answer_data[3]['ist_korrekt'] %} checked {% endif %}>
+                    <button type="button" class="minus-button" onclick="removeAnswer(4)">-</button><br>
+            </div>
+
+        <input type="submit" value="Frage aktualisieren">
+
+    </form>
+
+    </main>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Quiz abgeschlossen</title>
+{% endblock %}
+
+{% block body %}
+    <header>
+        <h1> <a href="/index.html">Quiz App </a></h1>
+    </header>
+
+    <h2>Quiz abgeschlossen</h2>
+
+    <p>Vielen Dank! Ihr Quiz wurde erfolgreich abgeschlossen.</p>
+
+    <p>Anzahl der richtig beantworteten Fragen: {{ correct_answers_count }}</p>
+
+    <h3>Fragen und Antworten:</h3>
+    <ul>
+        {% for result in question_results %}
+            <li>
+                <p>Frage: {{ result['question_data']['frage_inhalt'] }}</p>
+
+                <ul>
+                    {% for answer in result['answer_data'] %}
+                    <li>
+                        {{ answer['antwort_inhalt'] }}
+                        {% if answer['ist_korrekt'] %}
+                            {% if answer['antwort_id'] in result['user_answer'] %}
+                                <span style="color: green;">(Richtig ausgewählt)</span>
+                            {% else %}
+                                <span style="color: green;">(Richtige Antwort)</span>
+                            {% endif %}
+                        {% elif answer['antwort_id'] in result['user_answer'] %}
+                            <span style="color: red;">(Falsch ausgewählt)</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+
+                </ul>
+
+                {% if result['correct'] %}
+                    <span style="color: green;">Richtig</span>
+                {% else %}
+                    <span style="color: red;">Falsch</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="/" class="link" style="text-align: center">Zurück zur Startseite</a>
+{% endblock %}
+

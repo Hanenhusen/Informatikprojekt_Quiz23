@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Edit Quiz</title>
+{% endblock %}
+
+{% block body %}
+    <header>
+        <h1> <a href="/index.html">Quiz App </a></h1>
+    </header>
+
+    <main>
+        <h2>Edit Quiz : {{ quiz_data["thema"] }}</h2>
+
+        <form method="post" action="{{ url_for('editQuiz', quiz_id=quiz_data['quiz_id']) }}">
+            <label for="new_thema">Thema umbenennen:</label>
+            <input type="text" id="new_thema" name="new_thema" value="{{ quiz_data['thema'] }}" required>
+
+            <br>
+            <br>
+
+            <input type="submit" value="Thema aktualisieren">
+        </form>
+    </main>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block head %}{% endblock %}
+
+{% block body %}
+   <header>
+        <h1> <a href="/index.html">Quiz App </a></h1>
+   </header>
+
+    <main>
+        <div class="form-container">
+            <div class = "quizfragen">
+            <h2>Quiz ID: {{ quiz_data["quiz_id"] }}, &nbsp; Thema: {{ quiz_data["thema"] }}</h2>
+            </div>
+            <!-- Hier eine Tabelle für die Fragen -->
+            <table >
+                <thead>
+                    <tr>
+                        <th>Fragetyp</th>
+                        <th>Frage</th>
+                        <th>Antworten</th>
+                        <th>Bearbeiten</th>
+                        <th>Löschen</th>
+                        <!-- Weitere Spalten für weitere Attribute -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for question in questions %}
+                        <tr>
+                            <td>{{ question["fragetyp"] }}</td>
+                            <td>{{ question["frage_inhalt"] }}</td>
+                            <td>
+                                <!-- Tabelle für Antworten -->
+                                <table class="Antwort-Tabelle">
+                                    <thead>
+                                        <tr>
+                                            <th>Antwortmöglichkeiten</th>
+                                            <th>Antwort</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for answer in question["answers"] %}
+                                            <tr>
+                                                <td>{{ answer["antwort_inhalt"] }}</td>
+                                                <td>{% if answer["ist_korrekt"] %}Korrekt{% else %}Falsch{% endif %}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </td>
+                            <!-- Seite editQuestion?-->
+                            <td><a href="{{ url_for('editQuestion', frage_id=question['frage_id']) }}" class="link" style="text-align: center">Bearbeiten</a></td>
+                            <td><a href="{{ url_for('deleteQuestionAll', frage_id=question['frage_id']) }}" class="link" style="text-align: center">Löschen</a></td>
+                            <!-- Hier weitere Zellen für weitere Attribute -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+
+            <!-- Quiz ID übergeben -->
+            <a href="{{ url_for('new_question', quiz_id=quiz_data['quiz_id']) }}" class="link">Neue Frage hinzufügen</a>
+        </div>
+    </main>
+{% endblock %}

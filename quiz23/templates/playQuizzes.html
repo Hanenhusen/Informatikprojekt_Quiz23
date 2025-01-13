@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    <header>
+        <h1> <a href="/index.html">Quiz App </a></h1>
+    </header>
+    <h2>Wähle ein Quiz zum Starten:</h2>
+    <table class="quiz_table">
+        <thead>
+            <tr>
+                <th>Quiz ID</th>
+                <th>Dozent ID</th>
+                <th>Thema</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for quiz in result %}
+                {% if quiz["freigegeben"] %}
+                <tr>
+                    <td>{{ quiz["quiz_id"] }}</td>
+                    <td>{{ quiz["dozent_id"] }}</td>
+                    <td>{{ quiz["thema"]}}</td>
+                    <td><a href="{{ url_for('startQuiz', quiz_id=quiz['quiz_id']) }}" class="link" style="text-align: center">Quiz starten</a></td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

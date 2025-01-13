@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+{% block body %}
+    <header>
+        <h1> <a href="/index.html">Quiz App </a></h1>
+    </header>
+        <h2>Liste Aller Quizze</h2>
+        <table class="quiz_table">
+                <thead>
+                    <tr>
+                        <th>Quiz ID</th>
+                        <th>Dozent ID</th>
+                        <th>Thema</th>
+                        <th>Freigegeben</th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for quiz in result %}
+<tr>
+                        <td>{{ quiz["quiz_id"] }}</td>
+                        <td>{{ quiz["dozent_id"] }}</td>
+                        <td>{{ quiz["thema"]}}</td>
+                        <td>
+                            {% if quiz["freigegeben"] %}
+                                <span style="color: green;">Ja</span>
+                            {% else %}
+                                <span style="color: red;">Nein</span>
+                            {% endif %}
+                        </td>
+                        <!-- hier als query quiz_id übergeben -->
+                        <td><a href="{{ url_for('quiz', quiz_id=quiz['quiz_id']) }}" class="link" style="text-align: center">zum Quiz</a></td>
+                        <td><a href="{{ url_for('editQuiz', quiz_id=quiz['quiz_id']) }}" class="link" style="text-align: center">Bearbeiten</a></td>
+                        <td>
+                            <form method="post" action="{{ url_for('releaseQuiz', quiz_id=quiz['quiz_id']) }}" class="link">
+                                <input type="checkbox" name="freigegeben">
+                                       {% if quiz["freigegeben"] %}
+                                        Frei
+                                        {% else %}
+                                        Gesperrt
+                                       {% endif %}
+
+                                <button type="submit" >Freigeben/Sperren</button>
+                            </form>
+                        </td>
+                        <td><a href="{{ url_for('showFeedback', quiz_id=quiz['quiz_id']) }}" class="link" style="text-align: center">Feedback ansehen</a></td>
+                        <!--<td><a href="{{ url_for('releaseQuiz', quiz_id=quiz['quiz_id']) }}" class="link" style="text-align: center">Freigeben</a></td> -->
+                        <td><a href="{{ url_for('deleteQuizAll', quiz_id=quiz['quiz_id']) }}" class="link" style="text-align: center">Löschen</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+{% endblock %}

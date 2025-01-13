@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Error</title>
+{% endblock %}
+
+{% block body %}
+    <header>
+        <h1>Error Page</h1>
+    </header>
+    <main>
+        <p>An error occurred: {{ message }}</p>
+        <!-- Hier könntest du zusätzliche Informationen oder Links zur Fehlerbehandlung hinzufügen -->
+    </main>
+    <footer>
+        <p>&copy; 2023 QuizApp</p>
+    </footer>
+{% endblock %}
